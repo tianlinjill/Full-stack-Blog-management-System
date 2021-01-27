@@ -60,7 +60,16 @@ Allows developers to extract application configuration information for different
 
 Paging module
 
+## Will do
 
+User could also publish article.
 
+Picture could be added inner article for better reading experience.
 
+User dashboard: 
 
+   1.User could read data about his or her article such as number of view.
+
+2. User/Admin could delete comment in his or her article to avoid the hate speech.
+
+   
