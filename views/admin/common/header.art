@@ -1,0 +1,24 @@
+<!-- head -->
+    <div class="header">
+    	<!-- web logo -->
+        <div class="logo fl">
+          Blog management system background
+            <i>Jeffrey-made</i>
+        </div>
+        <!-- /web logo -->
+        <!-- user info -->
+        <div class="info">
+            <div class="profile dropdown fr">
+                <span class="btn dropdown-toggle" data-toggle="dropdown">
+					{{userInfo && userInfo.username}}
+					<span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu">
+                    <li><a href="user-edit.html">Personal information</a></li>
+                    <li><a href="/admin/logout">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /User info -->
+    </div>
+    <!-- /head -->

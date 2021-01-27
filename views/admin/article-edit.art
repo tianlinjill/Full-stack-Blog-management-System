@@ -1,0 +1,88 @@
+{{extend './common/layout.art'}}
+    {{block 'main'}}
+    {{include './common/header.art'}}
+    <!-- main content -->
+    <div class="content">
+        <!-- side bar -->
+       {{include './common/aside.art'}}
+        <!-- side bar -->
+        <div class="main">
+            <!-- category title -->
+            <div class="title">
+                <h4 >{{title}}</h4>
+            </div>
+            <!-- /category title -->
+            <form class="form-container" enctype="multipart/form-data" action="{{link}}" method = "post">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" placeholder="Please input the article title" name="title"  value="{{article && article.title}}">
+                </div>
+                <div class="form-group">
+                    <label >Author</label>
+                    <input type="text" name="author" class="form-control" readonly value="{{@userInfo._id}}">
+                </div>
+                <div class="form-group">
+                    <label >Published Date</label>
+                    <input type="date" name="publishDate" class="form-control" value="{{article && dateFormate(article.publishDate, 'yyyy-mm-ss')}}">
+                </div>
+                
+                <div class="form-group">
+                   <label for="exampleInputFile" >Article Cover</label>
+                   <input type="file" name="cover" id = "file" >
+                   <div class="thumbnail-waper">
+
+                       <img class="img-thumbnail" src="{{article && article.cover}}" id = "preview">
+                   </div>
+                </div>
+                <div class="form-group">
+                    <label  >Content</label>
+                    <textarea name="content" class="form-control" id="editor">{{article && article.content}}</textarea>
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="btn btn-primary" value="{{button}}">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    <!-- /main content -->
+    {{/block}}
+    
+    {{block 'script'}}
+    <script src="/admin/lib/ckeditor5/ckeditor.js"></script>
+    <script type="text/javascript">
+    
+        let editor;
+
+        ClassicEditor
+                .create( document.querySelector('#editor'))
+                .then(newEditor => {
+                    editor = newEditor;
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+
+        // get data
+        // const editorData = editor.getData();
+        
+        // Select file upload module
+        var file = document.querySelector('#file');
+        var preview = document.querySelector('#preview')
+        // when user finshed choose the file
+        file.onchange = function(){
+            // 1 Create file reader object
+            var reader = new FileReader();
+        
+            // 2 read file
+            reader.readAsDataURL(this.files[0]);
+            // 3.monitoring onload event
+            reader.onload = function(){
+                console.log(reader.result)               
+            // Display the result of file reading on the page
+                preview.src = reader.result;
+            }
+        }
+
+    </script>
+    {{/block}}
